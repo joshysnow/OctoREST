@@ -1,13 +1,19 @@
-var express = require('express');
-var uniqid = require('uniqid');
-var app = express();
-var bodyParser = require("body-parser");
-var port = process.env.PORT || 3000;
-var fs = require("fs");
+const express = require('express');
+//const uniqid = require('uniqid');
+const app = express();
+//const bodyParser = require("body-parser");
+const port = process.env.PORT || 3000;
+//const fs = require("fs");
 
-app.use(bodyParser.json());
+//app.use(bodyParser.json());
 
-app.get('/users', function(req, res) {
+const index = require('./api/routes/index');
+const api = require('./api/routes/api');
+
+app.use('/', index);
+app.use('/api', api);
+
+/*app.get('/users', function(req, res) {
   fs.readFile(__dirname + "/" + "users.json", 'utf8', function (err,data){
     console.log(data);
     res.end(data);
@@ -32,7 +38,7 @@ app.post('/users', function (req, res){
   })
 
   res.send({'id': id});
-});
+});*/
 
 app.listen(port);
 
