@@ -10,7 +10,9 @@ var express = require('express'),
       res.end(data);
     });
   });
-
+  app.get('/', (req, res) => {
+    res.send ('Welcome to our API');
+  });
   app.listen(port);
 
   console.log('OctoREST started on: ' + port);
