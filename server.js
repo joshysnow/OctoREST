@@ -1,4 +1,5 @@
 var express = require('express');
+var uniqid = require('uniqid');
 var app = express();
 var bodyParser = require("body-parser");
 var port = process.env.PORT || 3000;
@@ -23,7 +24,7 @@ app.post('/users', function (req, res){
 
   fs.readFile('users.json', function (err, data){
       var json = JSON.parse(data);
-      id = Date.now();
+      id = uniqid();
       console.log(json);
       json[id] = inputData;
 
