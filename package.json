@@ -1,0 +1,26 @@
+{
+  "name": "octorest",
+  "version": "1.0.0",
+  "description": "RESTful service for OctoAND",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/joshysnow/OctoREST.git"
+  },
+  "author": "Josh & Ellis",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/joshysnow/OctoREST/issues"
+  },
+  "homepage": "https://github.com/joshysnow/OctoREST#readme",
+  "devDependencies": {
+    "nodemon": "^1.12.1"
+  },
+  "dependencies": {
+    "express": "^4.16.2"
+  }
+}
