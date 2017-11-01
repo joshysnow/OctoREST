@@ -1,44 +1,35 @@
 const express = require('express');
-//const uniqid = require('uniqid');
 const app = express();
-//const bodyParser = require("body-parser");
+const bodyParser = require('body-parser');
+const validator = require('express-validator');
 const port = process.env.PORT || 3000;
-//const fs = require("fs");
 
-//app.use(bodyParser.json());
+/// SETUP MONGOOSE ///
+const mongoose = require('mongoose');
+const mongoDB = 'mongodb://127.0.0.1:27017/mongo';
 
+mongoose.connect(mongoDB, {
+  useMongoClient: true
+});
+
+const db = mongoose.connection;
+db.on('error', console.error.bind(console, 'MongoDB connection error:'));
+//////////////////////
+
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({
+  extended: false
+}));
+
+app.use(validator());
+
+/// SETUP ROUTES ///
 const index = require('./api/routes/index');
 const api = require('./api/routes/api');
+///////////////////
 
 app.use('/', index);
 app.use('/api', api);
-
-/*app.get('/users', function(req, res) {
-  fs.readFile(__dirname + "/" + "users.json", 'utf8', function (err,data){
-    console.log(data);
-    res.end(data);
-  });
-});
-
-app.get('/', (req, res) => {
-  res.send ('Welcome to our API');
-});
-
-app.post('/users', function (req, res){
-  const inputData = req.body;
-  let id;
-
-  fs.readFile('users.json', function (err, data){
-      var json = JSON.parse(data);
-      id = uniqid();
-      console.log(json);
-      json[id] = inputData;
-
-      fs.writeFile("users.json", JSON.stringify(json));
-  })
-
-  res.send({'id': id});
-});*/
 
 app.listen(port);
 
