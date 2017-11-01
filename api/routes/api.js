@@ -14,6 +14,9 @@ router.get('/user/:id', user_controller.user_get);
 /* DELETE request for a specific user. */
 router.delete('/user/:id', user_controller.user_delete);
 
+/* PUT request to update a specific user. */
+router.put('/user/:id', user_controller.user_update);
+
 /* POST request for a specific user. */
 router.post('/user', user_controller.user_post);
 

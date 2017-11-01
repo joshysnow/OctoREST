@@ -7,7 +7,7 @@ exports.index = (req, res) => {
   res.send('NOT IMPLEMENTED: Site Home Page');
 };
 
-exports.user_post = (req, res) => {
+exports.user_post = (req, res, next) => {
   const dateTime = new Date(Date.now()).toLocaleString();
   console.log('LOG ' + dateTime + ': request to store a user');
 
@@ -39,7 +39,7 @@ exports.user_post = (req, res) => {
   });
 };
 
-exports.user_get = (req, res) => {
+exports.user_get = (req, res, next) => {
   const dateTime = new Date(Date.now()).toLocaleString();
   console.log('LOG ' + dateTime + ': request for specific user');
 
@@ -50,7 +50,14 @@ exports.user_get = (req, res) => {
     });
 };
 
-exports.user_delete = (req, res) => {
+exports.user_update = (req, res, next) => {
+  const dateTime = new Date(Date.now()).toLocaleString();
+  console.log('LOG ' + dateTime + ': request for specific user');
+
+  res.send('NOT IMPLEMENTED: User Update');
+};
+
+exports.user_delete = (req, res, next) => {
   const dateTime = new Date(Date.now()).toLocaleString();
   console.log('LOG ' + dateTime + ': request to delete specific user');
 
@@ -60,7 +67,7 @@ exports.user_delete = (req, res) => {
   });
 };
 
-exports.user_list = (req, res) => {
+exports.user_list = (req, res, next) => {
   const dateTime = new Date(Date.now()).toLocaleString();
   console.log('LOG ' + dateTime + ': request for user list');
 
