@@ -22,6 +22,12 @@ app.use(bodyParser.urlencoded({
 }));
 
 app.use(validator());
+app.use((req, res, next) => {
+  res.setHeader('Access-Control-Allow-Origin', 'http://localhost:8001');
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
+  res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With, content-type');
+  next();
+});
 
 /// SETUP ROUTES ///
 const index = require('./api/routes/index');
