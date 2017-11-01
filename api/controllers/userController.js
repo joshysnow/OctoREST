@@ -64,7 +64,7 @@ exports.user_list = (req, res) => {
   const dateTime = new Date(Date.now()).toLocaleString();
   console.log('LOG ' + dateTime + ': request for user list');
 
-  User.find({}, 'firstName lastName age nationality')
+  User.find({}, 'firstName lastName')
     .exec((err, list_users) => {
       if (err) { return next(err); }
       res.send({'users': list_users});
