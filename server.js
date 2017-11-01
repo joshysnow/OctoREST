@@ -6,7 +6,7 @@ const port = process.env.PORT || 3000;
 
 /// SETUP MONGOOSE ///
 const mongoose = require('mongoose');
-const mongoDB = 'mongodb://127.0.0.1:27017/mongo';
+const mongoDB = 'mongodb://mongo:27017';
 
 mongoose.connect(mongoDB, {
   useMongoClient: true
