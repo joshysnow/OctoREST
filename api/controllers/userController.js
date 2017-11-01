@@ -72,8 +72,10 @@ exports.user_list = (req, res, next) => {
   console.log('LOG ' + dateTime + ': request for user list');
 
   User.find({}, 'firstName lastName')
-    .exec((err, list_users) => {
-      if (err) { return next(err); }
+    .then((list_users) => {
       res.send({'users': list_users});
+    })
+    .catch((err) => {
+      next(err);
     });
 };

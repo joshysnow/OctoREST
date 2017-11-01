@@ -8,13 +8,13 @@ const port = process.env.PORT || 3000;
 const mongoose = require('mongoose');
 const mongoDB = 'mongodb://mongo:27017';
 
+mongoose.Promise = require('bluebird');
 mongoose.connect(mongoDB, {
   useMongoClient: true
 });
 
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'MongoDB connection error:'));
-//////////////////////
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
