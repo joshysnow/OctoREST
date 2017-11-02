@@ -52,7 +52,7 @@ exports.user_get = (req, res, next) => {
 
 exports.user_update = (req, res, next) => {
   const dateTime = new Date(Date.now()).toLocaleString();
-  console.log('LOG ' + dateTime + ': request for specific user');
+  console.log('LOG ' + dateTime + ': request to update a specific user');
 
   User.findById(req.params.id)
     .then((user) => {
