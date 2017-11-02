@@ -54,7 +54,18 @@ exports.user_update = (req, res, next) => {
   const dateTime = new Date(Date.now()).toLocaleString();
   console.log('LOG ' + dateTime + ': request for specific user');
 
-  res.send('NOT IMPLEMENTED: User Update');
+  User.findById(req.params.id)
+    .then((user) => {
+      const updatedUser = Object.assign(new User({}), user, req.body);
+
+      updatedUser.save((err) => {
+        if (err) { return next(err); }
+        res.send({'user': user});
+      });
+    })
+    .catch((err) => {
+      next(err);
+    });
 };
 
 exports.user_delete = (req, res, next) => {
@@ -62,7 +73,7 @@ exports.user_delete = (req, res, next) => {
   console.log('LOG ' + dateTime + ': request to delete specific user');
 
   User.findById(req.params.id).remove().exec((err, user) => {
-      if(err) {return next(err);}
+    if(err) {return next(err);}
     res.send('User Deleted');
   });
 };
