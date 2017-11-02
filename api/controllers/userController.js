@@ -44,9 +44,11 @@ exports.user_get = (req, res, next) => {
   console.log('LOG ' + dateTime + ': request for specific user');
 
   User.findById(req.params.id)
-    .exec((err, user) => {
-      if (err) { return next(err); }
+    .then((user) => {
       res.send({'user': user});
+    })
+    .catch((err) => {
+      next(err);
     });
 };
 
@@ -72,10 +74,12 @@ exports.user_delete = (req, res, next) => {
   const dateTime = new Date(Date.now()).toLocaleString();
   console.log('LOG ' + dateTime + ': request to delete specific user');
 
-  User.findById(req.params.id).remove().exec((err, user) => {
-    if(err) {return next(err);}
-    res.send('User Deleted');
-  });
+  User.findById(req.params.id)
+    .remove()
+    .then((user) => {
+      const {n} = user.result;
+      res.send({'delete': n});
+    });
 };
 
 exports.user_list = (req, res, next) => {
